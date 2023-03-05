@@ -1,5 +1,6 @@
 function toggleClient(name)
 {
+    const cur_desktop = workspace.currentDesktop;
     const clients = workspace.clientList();
 
     let client = null;
@@ -7,7 +8,7 @@ function toggleClient(name)
     for (var i = 0; i < clients.length; i++) {
         let resource_name = clients[i].resourceName;
 
-        if (resource_name == name)
+        if (resource_name == name && clients[i].desktop == cur_desktop)
         {
             client = clients[i];
             break;
