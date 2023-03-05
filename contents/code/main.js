@@ -1,4 +1,4 @@
-function toggleClient()
+function toggleClient(name)
 {
     const clients = workspace.clientList();
 
@@ -7,7 +7,7 @@ function toggleClient()
     for (var i = 0; i < clients.length; i++) {
         let resource_name = clients[i].resourceName;
 
-        if (resource_name == "kitty")
+        if (resource_name == name)
         {
             client = clients[i];
             break;
@@ -18,9 +18,9 @@ function toggleClient()
     {
         if (client.minimized)
         {
-            client.setMaximize(true, true);
-            client.keepAbove = true;
-            client.keepBelow = false;
+            // client.setMaximize(true, true);
+            // client.keepAbove = false;
+            // client.keepBelow = false;
             workspace.activeClient = client;
         }else{
             client.minimized = true;
@@ -29,4 +29,7 @@ function toggleClient()
     }
 }
 
-registerShortcut("ToggleKittyWindow", "ToggleKittyWindow", "F12", toggleClient);
+function toggleKitty() { toggleClient("kitty"); }
+function toggleEmacs() { toggleClient("emacs"); }
+registerShortcut("ToggleKittyWindow", "ToggleKittyWindow", "F12", toggleKitty);
+registerShortcut("ToggleEmacsWindow", "ToggleEmacsWindow", "Meta+F12", toggleEmacs);
